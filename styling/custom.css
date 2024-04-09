@@ -1,0 +1,7 @@
+/* custom.css */
+body {
+    font-size: 1.1em; /* Increase base font size */
+}
+.table th, .table td {
+    font-size: 14px; /* Increase font size specifically for table headers and cells */
+}

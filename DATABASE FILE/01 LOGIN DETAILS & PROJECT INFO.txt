@@ -1,0 +1,13 @@
+**Database Name: simpleloan**
+
+
+**Recommended PHP Version 5.6**
+
+
+**Login Details**
+
+Username: admin@mail.com
+Password: codeastro.com
+
+
+
