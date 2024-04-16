@@ -30,10 +30,6 @@ header('location:../index.php');
 <body>
     <nav>
         <div class="logo-name">
-            <div class="logo-image">
-               <img src="images/logo.png" alt="">
-            </div>
-
             <span class="logo_name">Admin Panel</span>
         </div>
 
@@ -85,11 +81,6 @@ header('location:../index.php');
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
-
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here...">
-            </div>
         </div>
     
     <div class="main">
