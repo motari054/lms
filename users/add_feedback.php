@@ -8,8 +8,6 @@ if (!isset($_SESSION['user'])) {
     header("Location: login_signup.php");
     exit();
 }
-
-// Handle feedback submission
 if (isset($_POST['submit'])) {
     // Get the current user's username
     $username = $_SESSION['user'];
