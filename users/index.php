@@ -80,7 +80,6 @@ header('location:index.php');
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
         </div>
-    
     <div class="main">
     <!-- container-->
 <?php
