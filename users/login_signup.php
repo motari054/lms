@@ -58,7 +58,8 @@
             <form method="POST">
                 <h1>Sign In</h1>
                 <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="password" placeholder="Password" id="pass" required>
+                <input type="checkbox" class="checkbox-input" onclick="Toggle()"><label class="checkbox-label" for="">Show Password</label>
                 <button name="login">Sign In</button>
                 <a href="#">Forget Your Password?</a>
                 <!-- Display Error Message -->
@@ -81,6 +82,19 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Change the type of input to password or text
+        function Toggle() {
+            let temp = document.getElementById("pass");
+             
+            if (temp.type === "password") {
+                temp.type = "text";
+            }
+            else {
+                temp.type = "password";
+            }
+        }
+    </script>
 </body>
 
 </html>

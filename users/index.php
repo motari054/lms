@@ -6,6 +6,15 @@ if($user=="")
 {
 header('location:index.php');
 }
+$query = "SELECT first_name, last_name FROM accounts WHERE username = '$user'";
+$result = mysqli_query($con, $query);
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $fullName = $row['first_name'] . ' ' . $row['last_name'];
+} else {
+    // Handle database error
+    $fullName = "User";
+}
 ?>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
@@ -29,7 +38,7 @@ header('location:index.php');
 <body>
     <nav>
         <div class="logo-name">
-            <span class="logo_name">User Panel</span>
+            <span class="logo_name"><?php echo $fullName?></span>
         </div>
 
         <div class="menu-items">
@@ -62,15 +71,7 @@ header('location:index.php');
                     <span class="link-name">Logout</span>
                 </a></li>
 
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                    <span class="link-name">Dark Mode</span>
-                </a>
-
-                <div class="mode-toggle">
-                  <span class="switch"></span>
-                </div>
+                
             </li>
             </ul>
         </div>

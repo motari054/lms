@@ -114,8 +114,7 @@ if(isset($_GET['decline_loan_id'])) {
                 var loan_id = $(this).data('loan-id');
                 $.get('user_loan.php?approve_loan_id=' + loan_id, function(response){
                     alert(response); // Display success message
-                    // Optionally, you can reload the loan data after approval
-                    // location.reload();
+                    location.reload();
                 });
             });
 
@@ -123,8 +122,8 @@ if(isset($_GET['decline_loan_id'])) {
                 var loan_id = $(this).data('loan-id');
                 $.get('user_loan.php?decline_loan_id=' + loan_id, function(response){
                     alert(response); // Display success message
-                    // Optionally, you can reload the loan data after decline
-                    // location.reload();
+                    
+                    location.reload();
                 });
             });
         });
