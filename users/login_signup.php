@@ -18,30 +18,30 @@
                 <input type="text" name="last_name" placeholder="Last Name" required>
 
                 <div class="form-group">
-    <label>Gender: </label>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>
-        <label class="form-check-label" for="male">Male</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="gender" id="female" value="Female" required>
-        <label class="form-check-label" for="female">Female</label>
-    </div>
-</div>
+                    <label>Gender: </label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="Female" required>
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                </div>
 
                 <div class="form-group">
-                <label for="">Group</label><br>
-                <select name="group" class="form-control" required>
-                    <option selected disabled>--Select Group--</option>
-                    <?php 
-                    include ('database.php');
-                    $q1=mysqli_query($con,"select * from groups");
-                    while($r1=mysqli_fetch_assoc($q1)) {
-                        echo "<option value='".$r1['group_id']."'>".$r1['group_name']."</option>";
-                    }
-                    ?>
-                </select>
-            </div>
+                    <label for="">Group</label><br>
+                    <select name="group" class="form-control" required>
+                        <option selected disabled>--Select Group--</option>
+                        <?php 
+                        include ('database.php');
+                        $q1=mysqli_query($con,"select * from groups");
+                        while($r1=mysqli_fetch_assoc($q1)) {
+                            echo "<option value='".$r1['group_id']."'>".$r1['group_name']."</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Password" required>
@@ -57,10 +57,12 @@
         <div class="form-container sign-in">
             <form method="POST">
                 <h1>Sign In</h1>
-                <input type="text" name="username" placeholder="username" required>
+                <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <button name="login">Sign In</button>
                 <a href="#">Forget Your Password?</a>
+                <!-- Display Error Message -->
+                <?php if(isset($_SESSION['message'])) echo $_SESSION['message']; ?>
             </form>
         </div>
         <div class="toggle-container">
@@ -83,7 +85,6 @@
 
 </html>
 
-
 <?php
 session_start();
 include('database.php');
@@ -91,13 +92,13 @@ include('database.php');
 // Handle login form submission
 if (isset($_POST["login"])) {
     // Validate and sanitize input
-    $username = trim($_POST["username"]);
+    $email = trim($_POST["email"]);
     $password = $_POST["password"];
 
     // Check if username exists in the database
-    $sql = "SELECT * FROM accounts WHERE username = ?";
+    $sql = "SELECT * FROM accounts WHERE email = ?";
     $stmt = $con->prepare($sql);
-    $stmt->bind_param("s", $username);
+    $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
@@ -109,12 +110,16 @@ if (isset($_POST["login"])) {
             header("Location: index.php?page=dashboard");
             exit(); // Exit to prevent further execution
         } else {
-            $_SESSION['message'] = "Password does not match";
+            $_SESSION['message'] = "<div class='alert alert-warning' role='alert'>
+            Wrong Email or Password!
+          </div>";
             header("Location: login_signup.php");
             exit();
         }
     } else {
-        $_SESSION['message'] = "Username does not exist";
+        $_SESSION['message'] = "<div class='alert alert-warning' role='alert'>
+        Wrong Email or Password!
+      </div>";
         header("Location: login_signup.php");
         exit();
     }
