@@ -1,6 +1,3 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-
 <?php
 include('database.php'); // Include your database connection file
 
@@ -45,8 +42,6 @@ if ($result->num_rows > 0) {
             </div>";
       exit; // Stop further execution
   }
-  
-  
 } else {
     // If no existing loan application, handle as needed
     // For example, redirect the user back to the loan application page
@@ -69,7 +64,7 @@ if (isset($_GET['success']) && $_GET['success'] == '1') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Payment</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
@@ -111,6 +106,10 @@ if (isset($_GET['success']) && $_GET['success'] == '1') {
                     <input type="text" class="form-control" id="emiPaymentAmount" name="emiPaymentAmount" required>
                 </div>
             </div>
+            <input type="hidden" name="paymentAmount" value="<?php echo isset($_POST['emiPaymentAmount']) ? htmlspecialchars($_POST['emiPaymentAmount']) : ''; ?>">
+            <a href="../MPESA/checkout.php" style="left: 100px;" target="_blank">
+            <img src="../MPESA/mpesa.png" alt="mpesa icon" style="width: 100px;">
+            </a>
             <div class="form-group row">
                 <div class="col-sm-10 offset-sm-2">
                     <button type="submit" class="btn btn-primary">Add Payment</button>
