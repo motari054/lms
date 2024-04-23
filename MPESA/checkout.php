@@ -89,15 +89,11 @@ include('express-stk.php');
 <body>
 <div class="container">
     <div class="price">
-        <?php if(isset($_POST['paymentAmount'])): ?>
-            <h1>Awesome, that's KES <?php echo htmlspecialchars($_POST['paymentAmount']); ?></h1>
-        <?php else: ?>
-            <h1>Awesome, that's KES</h1>
-        <?php endif; ?>
+        <h1>Confirm Payment</h1>
     </div>
     <div class="card">
         <img src="mpesa.png" alt="Mpesa Icon">
-        <p>1. Enter the <b>phone number</b> and press "<b>Confirm and Pay</b>"<br>2. You will receive a popup on your phone. Enter your <b>MPESA PIN</b></p>
+        <p>1. Enter the <b>phone number</b> and press "<b>Pay</b>"<br>2. You will receive a popup on your phone. Enter your <b>MPESA PIN</b></p>
         <?php if ($errmsg != ''): ?>
             <p style="background: #cc2a24;padding: .8rem;color: #ffffff;"><?php echo $errmsg; ?></p>
         <?php endif; ?>
