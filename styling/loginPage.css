@@ -218,3 +218,37 @@ body {
     margin-left: 5px; /* Space between checkbox and its label */
     font-size: 13px; /* Adjust font size for better fit */
 }
+
+
+#message{
+    display: none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 2px;
+    padding-left: 10px;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-bottom: -3px;
+    max-height: 400px;
+}
+#message p{
+    padding: 0px 30px;
+    font-size: 18px;
+}
+.valid{
+    color: green;
+}
+.invalid{
+    color: red;
+}
+.valid:before{
+    position: relative;
+    left: -35px;
+    content: "✔";
+}
+.invalid:before{
+    position: relative;
+    left: -35px;
+    content: "✘";
+}

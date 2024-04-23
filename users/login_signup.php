@@ -44,22 +44,27 @@
                 </div>
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="password" placeholder="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$&]).{8,20}">
                 <input type="password" name="confirm_password" placeholder="Confirm Password" required>
                 <button name="signup">Sign Up</button>
             </form>
-        
+        </div>
+        <div id="message">
+            <h3 style="margin-bottom: -2px;">Password MUST contain the following</h3>
+            <p id="letter" class="invalid">At least 1 lowercase letter</p>
+            <p id="capital" class="invalid">At least 1 uppercase letter</p>
+            <p id="number" class="invalid">At least 1 Digit</p>
+            <p id="symbol" class="invalid">At least 1 Special Character</p>
+            <p id="length" class="invalid">Minimum 8 Characters</p>
         </div>
         
-
-
 
         <div class="form-container sign-in">
             <form method="POST">
                 <h1>Sign In</h1>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Password" id="pass" required>
-                <input type="checkbox" class="checkbox-input" onclick="Toggle()"><label class="checkbox-label" for="">Show Password</label>
+                <i class="fas fa-eye" onclick="show()"></i>
                 <button name="login">Sign In</button>
                 <a href="#">Forget Your Password?</a>
                 <!-- Display Error Message -->
@@ -83,15 +88,83 @@
 
     <script src="script.js"></script>
     <script>
-        // Change the type of input to password or text
-        function Toggle() {
-            let temp = document.getElementById("pass");
-             
-            if (temp.type === "password") {
-                temp.type = "text";
+      function show(){
+        var password = document.getElementById("pass");
+        var icon = document.querySelector(".fas")
+  
+        // ========== Checking type of password ===========
+        if(password.type === "password"){
+          password.type = "text";
+        }
+        else {
+          password.type = "password";
+        }
+      };
+    </script>
+    <script>
+        var password = document.getElementById("password");
+        var letter = document.getElementById("letter");
+        var capital = document.getElementById("capital");
+        var number = document.getElementById("number");
+        var symbol = document.getElementById("symbol");
+        var length = document.getElementById("length");
+
+        // When the user clicks on the password field, show the message box
+        password.onfocus = function() {
+            document.getElementById("message").style.display = "block";
+        }
+        // When the user clicks outside of the password field, hide the message box
+        password.onblur = function() {
+            document.getElementById("message").style.display = "none";
+        }
+        // When the user starts to type something inside the password field
+        password.onkeyup = function() {
+            //validate lower case characters
+            var lowerCaseLetters = /[a-z]/g;
+            if(password.value.match(lowerCaseLetters)) {  
+                letter.classList.remove("invalid");
+                letter.classList.add("valid");
+            } else {
+                letter.classList.remove("valid");
+                letter.classList.add("invalid");
+            }
+            //validate upper case characters
+            var upperCaseLetters = /[A-Z]/g;
+            if(password.value.match(upperCaseLetters)) {  
+                capital.classList.remove("invalid");
+                capital.classList.add("valid");
+            } else {
+                capital.classList.remove("valid");
+                capital.classList.add("invalid");
+            }
+            //validate numbers
+            var numbers = /[0-9]/g;
+            if(password.value.match(numbers)){
+                number.classList.remove("invalid");
+                number.classList.add("valid");
             }
             else {
-                temp.type = "password";
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+            }
+            //validate special characters
+            var special = /[@#$&]/g;
+            if (password.value.match(special)) {
+                symbol.classList.remove("invalid");
+                symbol.classList.add("valid");
+            }
+            else{
+                symbol.classList.remove("valid");
+                symbol.classList.add("invalid");
+            }
+            //validate length
+            if(password.value.length >= 8) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+            }
+            else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
             }
         }
     </script>
@@ -100,7 +173,7 @@
 </html>
 
 <?php
-session_start();
+
 include('database.php');
 
 // Handle login form submission
