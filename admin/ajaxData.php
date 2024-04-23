@@ -1,5 +1,4 @@
 <?php
-//Include database configuration file
 include('dbConfig.php');
 
 if(isset($_POST["region_id"]) && !empty($_POST["region_id"])){

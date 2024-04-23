@@ -97,7 +97,7 @@
 </html>
 
 <?php
-
+session_start();
 include('database.php');
 
 // Handle login form submission

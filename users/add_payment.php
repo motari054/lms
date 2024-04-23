@@ -37,9 +37,9 @@ if ($result->num_rows > 0) {
     
     // Check if the loan balance is less than or equal to 0
     if ($loan_balance <= 0) {
-      echo "<div class=\"alert alert-success\" role=\"alert\">
-              Congratulations! You completed your loan payment!
-            </div>";
+      echo"<div class='alert alert-success' role='alert'>
+      Congratulations! You completed your loan payment!
+    </div>";
       exit; // Stop further execution
   }
 } else {

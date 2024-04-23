@@ -50,10 +50,12 @@ $err="<div class='alert alert-success'>New Group has been added successfully!</d
 		<div class="col-sm-5">
 		<select name="activity" class="form-control" required>
 			<option value="">---Select Activity---</option>
-			<option>Activity 1</option>
-			<option>Activity 2</option>
-			<option>Activity 3</option>
-			<option>Activity 4</option>
+			<option>Investing</option>
+			<option>Trading</option>
+			<option>Consulting</option>
+			<option>Research</option>
+			<option>Management</option>
+			<option>Advisory</option>
 		</select>
 		</div>
 	</div>
